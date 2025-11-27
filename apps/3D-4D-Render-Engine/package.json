@@ -1,0 +1,22 @@
+{
+  "name": "bre",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000B\u0000a\u0000s\u0000i\u0000c\u0000-\u0000R\u0000e\u0000n\u0000d\u0000e\u0000r\u0000-\u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000\r\u0000 \u0000",
+  "main": "BRE.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mark-Platts/Basic-Render-Engine.git"
+  },
+  "author": "Mark",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mark-Platts/Basic-Render-Engine/issues"
+  },
+  "homepage": "https://github.com/Mark-Platts/Basic-Render-Engine#readme",
+  "devDependencies": {
+    "mocha": "^8.2.1"
+  }
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="FPSR.js"></script>
+        <link rel="stylesheet" href="FPSR.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+        <canvas id="mainCanvas"></canvas>
+
+        <div id="interaction">
+            <p>Options:</p>
+        </div>
+        <br>
+        <div id="info">
+        </div>
+
+        <script>
+            scaleCanvas();
+            const canvas = document.getElementById("mainCanvas");
+            let ctx = canvas.getContext("2d");
+            render(world);
+            canvas.addEventListener('mousemove', mouseMove, false);
+            canvas.requestPointerLock = canvas.requestPointerLock || canvas.mozRequestPointerLock;
+            document.exitPointerLock = document.exitPointerLock || document.mozExitPointerLock;
+        </script>
+
+    </body>
+</html>

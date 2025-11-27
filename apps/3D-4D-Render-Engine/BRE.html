@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="BRE.js"></script>
+        <link rel="stylesheet" href="BRE.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+        <a href="http://markplatts.co.uk/"><img src = "home_white_24dp.svg" alt="Home Sign SVG" class="homeSignSVG"/></a>
+
+        <canvas id="mainCanvas"></canvas>
+
+        <div id="interaction">
+            <p>3D Shapes:</p>
+            <div>
+                <button onclick="tetraSelect()">Tetrahedron</button>
+                <button onclick="cubeSelect()">Cube</button>
+                <button onclick="octaSelect()">Octahedron</button>
+                <button onclick="dodeSelect()">Dodecahedron</button>
+                <button onclick="icosaSelect()">Icosahedron</button>
+            </div>
+            <br>
+            <p>4D Shapes:</p>
+            <div>
+                <button onclick="hTetraSelect()">Pentachoron</button>
+                <button onclick="hypCubeSelect()">Hyper Cube</button>
+                <button onclick="hOctaSelect()">Hexadecachoron</button>
+                <button onclick="hDiamondSelect()">Hyper Diamond</button>
+                <button onclick="hDodeSelect()">Hexacosichoron</button>
+                <button onclick="hIcoSelect()">Hecatonicosichoron</button>
+            </div>
+            <br>
+            <p>3D Rotations:</p>
+            <div>
+                <button onclick="doRotYZ()">yz-plane (W)</button>
+                <button onclick="undoRotYZ()">yz-plane reverse (S)</button>
+                <button onclick="doRotXZ()">zx-plane (A)</button>
+                <button onclick="undoRotXZ()">zx-plane reverse (D)</button>
+                <button onclick="doRotXY()">xy-plane (E)</button>
+                <button onclick="undoRotXY()">xy-plane reverse (Q)</button>
+            </div>
+            <br>
+            <p>4D Rotations:</p>
+            <div>
+                <button onclick="doRotXW()">xw-plane (J)</button>
+                <button onclick="undoRotXW()">xw-plane reverse (L)</button>
+                <button onclick="doRotYW()">yw-plane (I)</button>
+                <button onclick="undoRotYW()">yw-plane reverse (K)</button>
+                <button onclick="doRotZW()">zw-plane (U)</button>
+                <button onclick="undoRotZW()">zw-plane reverse (O)</button>
+            </div>
+            <br>
+            <p>Options:</p>
+            <div>
+                <button id="perspectiveChange" onclick="perspectiveChange()">Perspective (P) ON</button>
+                <button id="wPerspExagOnOff" onclick="wPerspExagOnOff()">Exaggerate 4D Perspective (X) ON</button>
+                <button id="mouseFollowOnOff" onclick="mouseFollowOnOff()">Mouse Follow (M) ON</button>
+            </div>
+        </div>
+        <br>
+        <div id="info">
+            <h3>Information on the Mathematics:</h3>
+            <p><u>The shapes:</u><br>In geometry, a common question is to ask what shapes exist that obey certain criteria.
+                For example, we might ask 'In 2D, how many four sided shapes are there?' 
+                and for this we would look at the set including shapes such as the square, rhombus, trapezium, 
+                isosceles trapezium, rectangle, parallelogram, kite, and irregular quadrilateral. We could then 
+                add a second layer of rules to this making the criteria stricter. Let's say we only want shapes 
+                with at least two equal sides. The set then contains the square, rhombus,  
+                isosceles trapezium, rectangle, parallelogram, and kite. Next, we could say that we want all four sides to be equal leaving only 
+                the square and the rhombus. Finally, we ask that all of the internal angles are equal, leaving only the square</p>
+                <p>Each rule we have added has cleaned up the set, taking out the more lopsided shapes 
+                    and leaving only the most symmetric behind. If we use these steps on the set of n-sided shapes, then we get one shape left over, 
+                the regular n-gon.</p>
+                <p>The shapes displayed on this page are in essense the 3D and 4D versions of this 'most symmetric' idea. For 3D we only have 5, 
+                    romantically named 'the Platonic Solids' and revered by the Ancient Greeks (and modern geeks) for their beauty. The 4D shapes are knwon as the 
+                convex regular polytopes. They are mostly four dimensional versions of each of the Platonic Solids. However in 4D there also exists the Hyper-Diamond, 
+                which has no equivalents in any other dimensions!</p>
+            <p><u>The mathematics:</u><br>Everything here is done with basic linear algebra. 
+                Each shape is represented by a set of vectors such that each vector represents the position of a vertex of the shape.
+                Once this set of vectors in known, rotation matrices can be used on each vector to find where each vertex will be after the rotation.
+                That is how the larger, discrete rotations are done. 
+                The mouse following rotations however are done a little differently. There is a vector coming from the centre of the shape 
+                and ending at the screen. We shall call this the 'forward vector'. When the mouse is moved, we change the forward vector to go from 
+                the centre of the shape to where the mouse is on the screen. With this as our new forwards direction we can calculate what the new left-right 
+                and up-down direction must be. The vertex vectors contained numbers telling us how for right, up, and fowards to come to get to the vertex. 
+                If we use these numbers with the new direction vectors, we get the shape rotated to always face the mouse!</p>
+            
+            <br><br>
+            <h3>Information on the programming:</h3>
+            <p><u>The Goal:</u><br> I had three main goals in mind for this peice. 1) I wanted to try using mathematics to render something 
+            interesting in canvas. 2) I wanted to work out how correctly display the shapes in perspective. 
+            3) I wanted to figure out the mathematics and programming required to make something rotate to always face the mouse.</p>
+            
+            <p><u>What I learned</u><br> I'd say I achieved my goals and I certainly learned a lot. During this peice I figured out how to size elements 
+            to nice aspec ratios using the viewport height and width. This peice was also where listening events clicked for me after I did some experiments to understand 
+            their syntax and the nature of passing a function as a reference.</p>
+
+            <p><u>Noteworthy Parts of the Code:</u><br> </p>
+        </div>
+
+        <script>
+            scaleCanvas();
+            const canvas = document.getElementById("mainCanvas");
+            let ctx = canvas.getContext("2d");
+            render(coords);
+            canvas.addEventListener('mousemove', mouseMove, false);
+        </script>
+
+    </body>
+</html>

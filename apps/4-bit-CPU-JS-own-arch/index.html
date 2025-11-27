@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CPU-Sim</title>
+        <script src="logic.js"></script>
+        <script src="maths.js"></script>
+        <script src="ui.js"></script>
+        <link rel="stylesheet" href="styles.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id="container">
+            <div id="nonRAMWrap">
+                <table id="accumulatorTable">
+                    <tr>
+                        <td> Accumulator:</td>
+                        <td> <div id="accumulator" class="backing">0000</div> </td>
+                    </tr>
+                </table>
+
+                <table id="CPUTable">
+                    <tr>
+                        <th colspan="2">CPU</th>
+                    </tr>
+                    <tr>
+                        <td> Operation:</td>
+                        <td> <div id="instructionDecode" class="backing">0000</div> </td>
+                    </tr>
+                    <tr>
+                        <td> Negative:</td>
+                        <td> <div id="negativeFlag" class="backing">0</div> </td>
+                    </tr>
+                    <tr>
+                        <td> Zero:</td>
+                        <td> <div id="zeroFlag" class="backing">0</div> </td>
+                    </tr>
+                    <tr>
+                        <td> Overflow:</td>
+                        <td> <div id="overflowFlag" class="backing">0</div> </td>
+                    </tr>
+                    <tr>
+                        <td> Counter:</td>
+                        <td> <div id="InstAddReg" class="backing">0000</div> </td>
+                    </tr>
+                    <tr>
+                        <td> Phase:</td>
+                        <td> <div id="cyclePart" class="backing">S</div> </td>
+                    </tr>
+                </table>
+
+                <div id="controls">
+                    <div id="radioHolder">
+                        <p>Clock Speed:</p>
+                        <input type="radio" id="0.5hz" name="speed" value=1>
+                        <label for="1hz">0.5 Hz</label><br>
+                        <input type="radio" id="1hz" name="speed" value=1>
+                        <label for="10hz">1 Hz</label><br>
+                        <input type="radio" id="10hz" name="speed" value=1 checked>
+                        <label for="100hz">10 Hz</label>
+                    </div>
+                    <br>
+                    <button id="reset" onclick="reset()">Reset</button>
+                    <button id="step" onclick="doStep()">Step</button>
+                    <button id="play" onclick="playPause()">Play/Pause</button>
+                    <br>
+                    <button id="save" onclick="saveRAM(savedRAM)">Save RAM</button>
+                    <button id="load" onclick="loadRAM(savedRAM)">Load RAM</button>
+                </div>
+            </div>
+
+            <div id="RAMWrap">
+                <table id="RAMTable">
+                    <tr>
+                        <th colspan="3">RAM</th>
+                    </tr>
+                    <tr>
+                        <td> Address </td>
+                        <td> Instruction </td>
+                        <td> Translated </td>
+                    </tr>
+                    <tr id="row0">
+                        <td> 0000 </td>
+                        <td> <input type="text" id="data0" class="backing" value="00000000" onchange="updateTrans()"></td>
+                        <td id="dec0">NUL 0</td>
+                    </tr>
+                    <tr id="row1">
+                        <td> 0001 </td>
+                        <td> <input type="text" id="data1" class="backing" value="00000000" onchange="updateTrans()"></td>
+                        <td id="dec1">NUL 0</td>
+                    </tr>
+                    <tr id="row2">
+                        <td> 0010 </td>
+                        <td> <input type="text" id="data2" class="backing" value="00000000" onchange="updateTrans()"></td>
+                        <td id="dec2">NUL 0</td>
+                    </tr>
+                    <tr id="row3">
+                        <td> 0011 </td>
+                        <td> <input type="text" id="data3" class="backing" value="00000000" onchange="updateTrans()"></td>
+                        <td id="dec3">NUL 0</td>
+                    </tr>
+                    <tr id="row4">
+                        <td> 0100 </td>
+                        <td> <input type="text" id="data4" class="backing" value="00000000" onchange="updateTrans()"></td>
+                        <td id="dec4">NUL 0</td>
+                    </tr>
+                    <tr id="row5">
+                        <td> 0101 </td>
+                        <td> <input type="text" id="data5" class="backing" value="00000000" onchange="updateTrans()"></td>
+                        <td id="dec5">NUL 0</td>
+                    </tr>
+                    <tr id="row6">
+                        <td> 0110 </td>
+                        <td> <input type="text" id="data6" class="backing" value="00000000" onchange="updateTrans()"></td>
+                        <td id="dec6">NUL 0</td>
+                    </tr>
+                    <tr id="row7">
+                        <td> 0111 </td>
+                        <td> <input type="text" id="data7" class="backing" value="00000000" onchange="updateTrans()"></td>
+                        <td id="dec7">NUL 0</td>
+                    </tr>
+                    <tr id="row8">
+                        <td> 1000 </td>
+                        <td> <input type="text" id="data8" class="backing" value="00000000" onchange="updateTrans()"></td>
+                        <td id="dec8">NUL 0</td>
+                    </tr>
+                    <tr id="row9">
+                        <td> 1001 </td>
+                        <td> <input type="text" id="data9" class="backing" value="00000000" onchange="updateTrans()"></td>
+                        <td id="dec9">NUL 0</td>
+                    </tr>
+                    <tr id="row10">
+                        <td> 1010 </td>
+                        <td> <input type="text" id="data10" class="backing" value="00000000" onchange="updateTrans()"></td>
+                        <td id="dec10">NUL 0</td>
+                    </tr>
+                    <tr id="row11">
+                        <td> 1011 </td>
+                        <td> <input type="text" id="data11" class="backing" value="00000000" onchange="updateTrans()"></td>
+                        <td id="dec11">NUL 0</td>
+                    </tr>
+                    <tr id="row12">
+                        <td> 1100 </td>
+                        <td> <input type="text" id="data12" class="backing" value="00000000" onchange="updateTrans()"></td>
+                        <td id="dec12">NUL 0</td>
+                    </tr>
+                    <tr id="row13">
+                        <td> 1101 </td>
+                        <td> <input type="text" id="data13" class="backing" value="00000000" onchange="updateTrans()"></td>
+                        <td id="dec13">NUL 0</td>
+                    </tr>
+                    <tr id="row14">
+                        <td> 1110 </td>
+                        <td> <input type="text" id="data14" class="backing" value="00000000" onchange="updateTrans()"></td>
+                        <td id="dec14">NUL 0</td>
+                    </tr>
+                    <tr id="row15">
+                        <td> 1111 </td>
+                        <td> <input type="text" id="data15" class="backing" value="00000000" onchange="updateTrans()"></td>
+                        <td id="dec15">NUL 0</td>
+                    </tr>  
+                </table>
+            </div>
+        </div>
+
+        
+
+        <div id="howTo">
+            <h2>Instructions:</h2>
+            <p>More detailed instructions and examples follow this OpCode manual.</p>
+            <table id="manual" class="manualTable">
+                <tr>
+                    <th class="manualEntry">OpCode:</th>
+                    <th class="manualEntry">Name:</th>
+                    <th class="manualEntry">Description:</th>
+                </tr>
+                <tr>
+                    <td class="manualEntry">0000</td>
+                    <th class="manualEntry">Null (NUL)</th>
+                    <td class="manualEntry">No operation occurs. Use this to store a value in the RAM.</td>
+                </tr>
+                <tr>
+                    <td class="manualEntry">0001</td>
+                    <th class="manualEntry">Clear (CLR)</th>
+                    <td class="manualEntry">Clears the accumulator, reseting it to 0000.</td>
+                </tr>
+                <tr>
+                    <td class="manualEntry">0010</td>
+                    <th class="manualEntry">Halt (HLT)</th>
+                    <td class="manualEntry">Instructs the program to terminate, but final values remain.</td>
+                </tr>
+                <tr>
+                    <td class="manualEntry">0011</td>
+                    <th class="manualEntry">None</th>
+                    <td class="manualEntry">Reserved for future operation.</td>
+                </tr>
+                <tr>
+                    <td class="manualEntry">0100</td>
+                    <th class="manualEntry">Load (LOD)</th>
+                    <td class="manualEntry">Sets accumulator equal to the value stored at the code address.</td>
+                </tr>
+                <tr>
+                    <td class="manualEntry">0101</td>
+                    <th class="manualEntry">Save (SAV)</th>
+                    <td class="manualEntry">Sets the value stored at the code address equal to the accumulator value.</td>
+                </tr>
+                <tr>
+                    <td class="manualEntry">0110</td>
+                    <th class="manualEntry">Add (ADD)</th>
+                    <td class="manualEntry">Adds the value stored at the code address to the accumulator, increasing its current value.</td>
+                </tr>
+                <tr>
+                    <td class="manualEntry">0111</td>
+                    <th class="manualEntry">Subtract (SUB)</th>
+                    <td class="manualEntry">Subtracts the value stored at the code address from the accumulator, decreasing its current value.</td>
+                </tr>
+                <tr>
+                    <td class="manualEntry">1000</td>
+                    <th class="manualEntry">Jump (JMP)</th>
+                    <td class="manualEntry">Sets the counter equal to the code address. That address will be read in the next Fetch phase.</td>
+                </tr>
+                <tr>
+                    <td class="manualEntry">1001</td>
+                    <th class="manualEntry">Jump if negative (JIN)</th>
+                    <td class="manualEntry">Jumps if the negative flag is 1. See Jump.</td>
+                </tr>
+                <tr>
+                    <td class="manualEntry">1010</td>
+                    <th class="manualEntry">Jump if zero (JIZ)</th>
+                    <td class="manualEntry">Jumps if the zero flag is 1. See Jump.</td>
+                </tr>
+                <tr>
+                    <td class="manualEntry">1011</td>
+                    <th class="manualEntry">Jump if overflow (JIO)</th>
+                    <td class="manualEntry">Jumps if the overflow flag is 1. See Jump.</td>
+                </tr>
+            </table>
+            <p>To input a program, add instructions to RAM addresses as necessary.</p>
+            <p>An instruction consists of an 8-bit binary number. The first 4 digits become the Operation Code (OpCode),
+                 whilst the last 4 digits become the Address Code (AdCode).
+            </p>
+            <p>The OpCode informs the CPU which operation to use. (See the manual above)</p>
+            <p>The AdCode tells tells the CPU which address to apply the operation to. (If applicable).</p>
+            <p>Example: instruction 01101111 informs the CPU to take the last 4 digits of the instruction at address 1111
+                 and add them to the accumulator.
+            </p>
+            <p>The accumulator is a special register that stores the value being worked on by the CPU.</p>
+            <p>Once the program is started. The CPU uses its counter to see what address to read next. It will start at address 
+                0000 and go in order, unless Jumps tell it otherwise.</p>
+            <p>Example: instruction 10000100 informs the CPU that it should set its counter to 0100 and read that address next.</p>
+            <p>There are 3 phases in a cycle: Fetch, retrieves the instruction from the address stored in the counter. Decode, 
+                splits up the instruction and stores the OpCode in 'operation'. Execute, executes the operation and if necessary, 
+                raises flags or changes the counter.
+            </p>
+            <p>There are three flags: Negative, raises if the accumulator rolls under 0000. Zero, raises if the accumulator is equal to 0000. 
+                Overflow, raises if the accumulator rolls over 1111. These flags are checked for during each execute phase and do not linger.</p>
+            <h2>Examples:</h2>
+            <p>Is Equal: For this program, enter a value at address 1101 and 1110. The program will terminate with a value stored
+                at address 1111. This value will be 1 if the two chosen values are equal and 0 otherwise. The example starts with the 
+                chosen values as 0001 (1) and 0010 (2) but can be changed to other values.
+            </p>
+            <button onclick="loadRAM(example1)">Load Program</button>
+            <p>Divide: The program does A/B for value A stored at address 1110 and value B stored at address 1111. 
+                The answer will be stored at address 1101 upon termination, with any remainder stored in the accumulator. 
+                The example is set up ready to do 15 divided by 2.
+            </p>
+            <p>Note 1: This program needs to be reset after use. Once loaded, use the Save RAM button to store a reusable copy.</p>
+            <p>Note 2: This program assumes A to be bigger than B.</p>
+            <p>Note 3: Division by zero will cause an infinite loop. (This is perfectly safe and can be used for demonstration 
+                purposes)
+            </p>
+            <button onclick="loadRAM(example2)">Load Program</button>
+        </div>
+
+        <div id="explanation"></div>
+    </body>
+</html>

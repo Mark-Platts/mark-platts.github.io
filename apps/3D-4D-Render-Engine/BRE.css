@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+  }
+
+body {
+    background-color: #110A08;
+    color: white;
+    font-family: 'Literata', serif;
+}
+
+canvas {
+    background-color: #353535;
+}
+
+canvas:hover {
+    cursor: crosshair;
+}
+
+button {
+    background-color: #555555;
+    color: white;
+    cursor: pointer;
+    border: none;
+    margin: 5px;
+    padding: 5px;
+    font-family: 'Ubuntu', sans-serif;
+  }
+
+#interaction *, #info * {
+    padding: 5px;
+}
+
+.homeSignSVG {
+    position: fixed;
+    margin: 5px;
+}
+
+#info {
+    margin:10px;
+}
+
+#info p {
+    margin:10px;
+}

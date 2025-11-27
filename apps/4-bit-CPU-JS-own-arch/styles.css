@@ -1,0 +1,94 @@
+body {
+    font-family: monospace;
+    background-color: #1b1b1b;
+}
+
+#container {
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+
+
+
+table {
+    margin: 10px;
+    padding: 10px;
+    background-color: lightblue;
+    border-radius: 5px;
+}
+
+table input {
+    width: 4rem;
+}
+
+#RAMWrap input {
+    border: none;
+}
+
+#controls {
+    padding: 10px;
+    background-color: lightgrey;
+    border-radius: 5px;
+}
+
+th, td {
+    text-align: center;
+    /* border: 1px solid oldlace;
+    border-radius: 2px; */
+}
+
+.backing {
+    background-color: lightcyan;
+    border-radius: 4px;
+    padding: 2px;
+}
+
+.blinkBacking {
+    background-color: gold;
+    border-radius: 4px;
+    padding: 2px;
+}
+
+.counterTurn {
+    background-color: rgb(7, 115, 148);
+    border-radius: 4px;
+    padding: 2px;
+}
+
+.errorHighlight {
+    background-color: rgb(153, 33, 33);
+    border-radius: 4px;
+    padding: 2px;
+}
+
+button {
+    padding: 2px;
+}
+
+#howTo {
+    color: lightgrey;
+}
+
+#RAMWrap, #nonRAMWrap {
+    margin: 0 auto;
+}
+
+/* #howTo table {
+    background-color: #1b1b1b;
+    border: 1px solid white;
+    border-radius: 0;
+} */
+
+.manualTable {
+    margin: 0px;
+    padding: 0px;
+    background-color: #1b1b1b;
+    border: 1px solid white;
+    border-radius: 0;
+}
+
+.manualEntry {
+    padding: 4px;
+    border: 1px solid white;
+    border-radius: 0;
+}
