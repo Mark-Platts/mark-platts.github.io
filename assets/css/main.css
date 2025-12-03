@@ -2,81 +2,95 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
+:root{
+  --background: #050c1b;
+  --nav-foot-background: #353535;
+  --info-background: linear-gradient(180deg, #15314b, #223f5a);
+  --text-colour: #bbcbdf;
+  --header-text-colour: #E9F3FF;
+  --link-hover: #BF9B67;
+  --font-nav: 'Ubuntu', sans-serif;
+  --font-headings: 'Literata', serif;
+  --font-main: 'Roboto', sans-serif;
+}
+
 * {
   padding: 0;
   margin: 0;
-  color:azure;
-  /* font-family:Verdana, Geneva, Tahoma, sans-serif; */
-  font-family: 'Ubuntu', sans-serif;
-  /* box-sizing: border-box; */
+  color: var(--text-colour);
+}
+
+html, body  {
+  background-color: var(--background);
+  height: 100%;
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color-scheme: dark;
+  -webkit-text-size-adjust: 100%;
 }
 
 p, li {
-  font-family: 'Literata', serif;
-  padding: 2px 0;
+  font-family: var(--font-main);
+  padding: 0.125rem 0;
 }
 
 h1, h2 {
+  color: var(--header-text-colour);
+  font-family: var(--font-headings);
   text-align: center;
 }
 
-body  {
-  background-color: #110A08;
-  height: 100%;
-  min-height: 100%;
-}
-
 nav {
+  color: var(--header-text-colour);
   position: fixed;
   display: flex;
   flex-wrap: wrap;
   align-content: center;
-  background-color: #353535;
-  border-bottom: 2px solid #575757;
-  height: 40px;
+  background-color: var(--nav-foot-background);
+  height: 2.5rem;
   width: 100%;
   z-index: 10;
+  font-family: var(--font-nav);
 }
 
 nav a {
+  color: var(--header-text-colour);
   text-decoration: none;
-  font-size: 18px;
-  /* font-weight: bold; */
-  padding: 0 10px;
+  font-size: 1.15rem;
+  font-weight: 500;
+  padding: 0 0.8rem;
 }
 
-nav a:hover {
-  color:burlywood;
+a:hover {
+  color:var(--link-hover);
 }
 
 main {
   position: relative;
-  top: 42px;
-  min-height: calc(100vh - 70px);
-  margin-bottom: 30px;
+  top: 3rem;
+  min-height: calc(100vh - 4rem);
+  margin-bottom: 2rem;
 }
 
 #above {
-  background-color: #243b53;
+  background: var(--info-background);
   margin: 0 auto;
   line-height: 1.2;
-  padding: 12px 20px;
+  padding: 1rem 1.25rem;
 }
 
 #above p {
-  padding: 8px 200px;
+  padding: 0.5rem 12.5rem;
 }
 
 #above h1, h2 {
-  margin-bottom: 4px;
-}
-
-#above ul {
-  padding: 0 16px;
+  margin-bottom: 0.25rem;
 }
 
 #above ol {
-  padding: 0 240px;
+  justify-self: center;
+  margin: 0 2.5rem;
 }
 
 #leftRightFlexWrap {
@@ -86,40 +100,40 @@ main {
 }
 
 #leftRightFlexWrap section {
-  /* display: inline-block; */
-  /* background-color: #102448; */
-  background-color: #243b53;
-  height: 800px;
-  width: 380px;
-  margin: 20px 20px;
+  background: var(--info-background);
+  height: 50rem;
+  width: 24rem;
+  margin: 1.25rem 1.25rem;
   line-height: 1.2;
-  border-radius: 5px;
+  border-radius: 1rem;
 }
 
 #leftRightFlexWrap h1, h2 {
-  margin: 10px;
+  margin: 0.6rem;
 }
 
 #leftRightFlexWrap ul {
-  padding-left: 40px;
-  padding-right: 20px;
+  padding-left: 2.5rem;
+  padding-right: 1.25rem;
   margin: 0 auto;
 }
 
 #explanation {
-  margin: 10px 10px 40px 10px;
-  padding: 10px;
+  margin: 0.6rem 0.6rem 2.5rem 0.6rem;
+  padding: 1rem;
 }
 
 footer {
-  background-color: #353535;
-  height: 40px;
+  background-color: var(--nav-foot-background);
+  height: 2.5rem;
+  text-align: center;
+  padding: 0.5rem 0;
 }
 
 /* about me only */
 
 #amMain article {
-  background-color: #243b53;
+  background-color: var(--info-background);
   padding: 40px 200px;
 }
 
@@ -135,7 +149,6 @@ footer {
 .parallax {
   position:relative;
   min-height: 500px;
-
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -181,62 +194,16 @@ footer {
 
 /* CV only */
 
-#CVMain article {
-  background-color: #243b53;
-  margin: 20px 100px;
-  padding: 20px;
+#cv-iframe {
+  display: block;
+  margin: 0 auto;
+  width: 90vw;
+  height: 90vh;
+  max-width: 800px;
+  border: none;
 }
 
-#CVGrid {
-  display: grid;
-  padding: 40px;
-  font-family: 'Roboto Mono', monospace;
-  grid-gap: 10px 10px;
-  grid-template-columns: 6fr 2fr;
-  grid-template-areas: "CVtitle CVtitle"
-                       "CVleft CVright"
-}
-
-#CVGrid p, h1, h2, h3 {
-  /* font-family: 'Roboto Mono', monospace; */
-  font-family: 'Roboto', sans-serif;
-  padding: 5px;
-}
-
-#CVGrid h2 {
-  background-color: #2c2c2c;
-}
-
-#CVGrid article {
-  padding-bottom: 20px;
-}
-
-#CVtitle {
-  grid-area: CVtitle;
-  background-color: #353535;
-  padding: 20px;
-}
-
-#CVleft {
-  grid-area: CVleft;
-  background-color: #243b53;
-  padding: 20px;
-}
-
-#CVleft h3 {
-  margin-top:10px;
-}
-
-#CVright {
-  grid-area: CVright;
-  background-color: #243b53;
-  padding: 20px;
-}
-
-#CVright h3 {
-  margin-top: 10px;
-}
-
+/* Alternate screen size modifications */
 
 @media only screen and (max-device-width: 1366px) {
   .parallax {
@@ -246,13 +213,6 @@ footer {
   #above p {
     padding: 8px 20px;
   }
-
-  /* #CVMain article {
-    background-color: #243b53;
-    margin: 20px 20px;
-    padding: 20px;
-  } */
-
 }
 
 @media only screen and (max-device-width: 600px) {
@@ -268,10 +228,7 @@ footer {
   }
 
   #amMain article {
-    background-color: #243b53;
+    background-color: var(--info-background);
     padding: 40px 20px;
   }
-
 }
-
-
