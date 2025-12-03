@@ -6,14 +6,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/main.css">
-    <script src="./assets/js/main.js" defer></script>
     <link rel="icon" href="./assets/media/favicon.ico">
     <title> Welcome! </title>
   </head>
 
   <body>
-    <header></header>
-
     <nav>
       <a href="#nav">Home/Portfolio</a>
       <a href="./cv/index.html">CV</a>
@@ -24,19 +21,20 @@
     <main id="main" role="main">
       <section id="above">
         <h1>Mark Platts Software Portfolio</h1>
-        <h2>Welcome!</h2>
+        <h2>I'm Mark Platts, Developer, Engineer, and Automation Tester with an obsession with figuring out how things work!</h2>
         <p>This is where I keep together any projects, experiments, or educational tools that I wish to show others.</p>
-        <p>Please note: Everything here is designed to show off something I have learned in programming. The education section is only separated out to make the more useful tools easier to pick out.</p>
-        <p>The code for each page and project was written from scratch, so that this website is a true indicator of my abilities.</p>
-        <p>The more in-depth pages each have an information section at the bottom with an explanation of what I wanted to accomplish and what I wanted to learn from the project.
-          Similarly, the GitHub pages have a README file.
-        </p>
-        <br><center><p>Thanks for the visit!</p></center>
+        <p>Everything here is designed to show off something. In fact the first portfolio piece is this portfolio itself! I hand coded all the web files in order to get a great intuition for how HTML, JS, and CSS fit together. I then developed a cloud deployment strategy by creating two GitHub Actions Workflows. Once builds the public facing site by aggregating the portfolio files and my web app files. The other gets called when I update one of my web apps and triggers the first to bring the portfolio up to date with a rebuild.</p>
+        <p>There are two types of portfolio piece on here:</p>
+        <ol>
+          <li>Web Apps - The link takes you to the app itself so that you can explore it. At the bottom of the page is an explanation of the work and a link to the repo</li>
+          <li>Code Pieces - For these, the link takes you straight to the repo where an explanation and example pictures/videos are provided in the README.md</li>
+        </ol>
+        <p>All code for this portfolio was written by me to be a true representation of my abilties. However it is worth noting that some code was written before I became a professional developer and is in need of an update. I am currently actively working through all pieces to modernise them to my current standards. But feel feel to take a look!</p>
       </section>
 
       <div id="leftRightFlexWrap">
         <section id="left">
-          <h2>Programming:</h2>
+          <h2>Web Apps:</h2>
           <ul>
             <li><a href="https://markplatts.co.uk/games/TTT/" target="_blank">Tic Tac Toe (A very early project)</a></li>
             <li><a href="https://markplatts.co.uk/blog/home" target="_blank">A Very Simple Blog Engine (Back End with Python)</a></li>
@@ -47,7 +45,7 @@
         </section>
 
         <section id="middle">
-          <h2>Educational:</h2>
+          <h2>Code:</h2>
           <ul>
             <li><a href="https://markplatts.co.uk/edu/maths/RCPV/BRE.html" target="_blank">Regular Convex Polytope Explorer</a></li>
             <li><a href="https://markplatts.co.uk/edu/cpu/index.html" target="_blank">4-Bit CPU Simulator</a></li>
@@ -58,7 +56,7 @@
         </section>
 
         <section id="right">
-          <h2>Coming Soon:</h2>
+          <h2>Future Projects:</h2>
           <ul>
             <li>FPS Basic Renderer</li>
             <li>Binomial Distribution Tool</li>
